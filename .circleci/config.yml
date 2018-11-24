@@ -2,12 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-      - image: debian:stretch
+      - image: circleci/node
     steps:
-      - checkout
+      - checkout # special step to check out source code to working directory
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: update-npm
+          command: npm install
       - run:
-          name: Print the Current Time
-          command: date
+          name: webpack build
+          command: npm start
+      - run:
+          name: :)
+          command: echo HEEEEE!!!!!!!
